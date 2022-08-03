@@ -1,1 +1,74 @@
-@import url("reset.css")
+@import url("reset.css");
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#open-modal {
+  text-align: center;
+  cursor: pointer;
+}
+
+#close-modal {
+  position: absolute;
+  cursor: pointer;
+  top: 5px;
+  right: 7px;
+}
+
+.modal {
+  position: absolute;
+  cursor: pointer;
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.book-form {
+  cursor: default;
+  position: relative;
+  width: 600px;
+  background: white;
+  margin: 100px auto;
+  padding: 40px;
+  border: 1px solid #999;
+  border-radius: 10px;
+}
+
+ul.books {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 240px 240px 240px;
+  grid-gap: 20px;
+  width: 760px;
+  margin: 40px auto;
+}
+
+ul.books li.book {
+  position: relative;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+ul.books li.book > div {
+  line-height: 24px;
+}
+
+ul.books li.book .remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 7px;
+}
+
+.remove {
+  cursor: pointer;
+}
+
+.toggle {
+  cursor: pointer;
+}
