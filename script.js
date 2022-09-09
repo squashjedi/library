@@ -1,14 +1,6 @@
 let myLibrary = []
 
-function Book(title, author, pages, isRead) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.isRead = isRead
-}
-
 const books = document.querySelector('.books')
-
 const modal = document.querySelector('.modal')
 const btnOpenModal = document.querySelector('#open-modal')
 const btnCloseModal = document.querySelector('#close-modal')
@@ -17,16 +9,11 @@ const title = document.querySelector('#title')
 const author = document.querySelector('#author')
 const pages = document.querySelector('#pages')
 const isRead = document.querySelector('#isRead')
+const bookForm = document.querySelector(".book-form")
 
-Book.prototype.toggle = function (e) {
-  this.isRead = !this.isRead
-  const bookNode = Array.from(books.childNodes).filter(book => {
-    return book.dataset.id === e.target.dataset.id
-  })
-  bookNode[0].querySelector(".isRead").textContent = this.isRead ? 'Read' : 'Not read'
-}
+bookForm.addEventListener("submit", e => {
+  e.preventDefault()
 
-function submitForm() {
   addBookToLibrary(new Book(
     title.value,
     author.value,
@@ -34,7 +21,35 @@ function submitForm() {
     isRead.checked
   ))
   closeModal()
+})
+
+class Book {
+  constructor(title, author, pages, isRead) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.isRead = isRead
+    this.toggle = (e) => {
+      this.isRead = !this.isRead
+      const bookNode = Array.from(books.childNodes).filter(book => {
+        return book.dataset.id === e.target.dataset.id
+      })
+      bookNode[0].querySelector(".isRead").textContent = this.isRead ? 'Read' : 'Not read'
+    }
+  }
 }
+
+
+
+// function submitForm() {
+//   addBookToLibrary(new Book(
+//     title.value,
+//     author.value,
+//     pages.value,
+//     isRead.checked
+//   ))
+//   closeModal()
+// }
 
 function closeModal() {
   modal.style.display = "none"
@@ -48,7 +63,7 @@ function openModal() {
   modal.style.display = "block"
 }
 
-btnSubmit.onclick = submitForm
+// btnSubmit.onclick = submitForm
 
 btnOpenModal.onclick = function () {
   modal.style.display = "block"
